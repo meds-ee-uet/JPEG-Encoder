@@ -70,7 +70,6 @@ try:
         compressed_jpg,
         "JPEG",
         quality=40,
-        quality=40,
         optimize=True,
         progressive=True
     )
@@ -98,3 +97,4 @@ try:
 
 except Exception as e:
     print("⚠️ Could not recompress JPEG:", e)
+
