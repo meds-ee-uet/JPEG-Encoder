@@ -1,3 +1,20 @@
+// Copyright 2025 Maktab-e-Digital Systems Lahore.
+// Licensed under the Apache License, Version 2.0, see LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Description:
+//   This is the SystemVerilog testbench for the top-level JPEG Encoder Core.
+//   It verifies functionality by:
+//   1. Providing input pixel data from an external file (`pixel_data.txt`).
+//   2. Driving clock, reset, enable, and end-of-file signals.
+//   3. Capturing the 32-bit JPEG bitstream output from the DUT (`jpeg_top`).
+//   4. Writing the bitstream to `jpeg_output.hex` for further verification.
+//
+//   The testbench uses relative file paths to ensure portability. This allows
+//   the design to be cloned and run on any system without modifying paths.
+//
+// Author: Navaal Noshi
+// Date:   17th August, 2025
 `timescale 1ps / 1ps
 
 // Testbench for JPEG top module
