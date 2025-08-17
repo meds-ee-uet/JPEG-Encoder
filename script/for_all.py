@@ -3,11 +3,13 @@
 
 from PIL import Image
 import numpy as np
+import os
 
 # --- Configuration ---
-input_image = "test.jpg"        # input image (any size)
-hex_file = "input_96.hex"      # plain hex RGB values
-pixel_file = "pixel_data.txt"  # Verilog-style data stream
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))  # folder where script is located
+input_image = os.path.join(SCRIPT_DIR, "test.jpg")       # input image (any size)
+hex_file = os.path.join(SCRIPT_DIR, "input_96.hex")      # plain hex RGB values
+pixel_file = os.path.join(SCRIPT_DIR, "pixel_data.txt")  # Verilog-style data stream
 width, height = 96, 96         # resize target
 block_size = 8
 
@@ -15,6 +17,9 @@ block_size = 8
 # Step 1: Resize to 96x96 and save hex dump
 # -------------------------
 def image_to_hex(img_path, hex_out, width=96, height=96):
+    if not os.path.exists(img_path):
+        raise FileNotFoundError(f"Image file not found: {img_path}")
+
     img = Image.open(img_path).convert("RGB")
     img_resized = img.resize((width, height), Image.LANCZOS)
 
