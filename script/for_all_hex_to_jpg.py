@@ -1,23 +1,37 @@
-
 # Converts JPEG bitstream from simulation to an actual JPEG image using a header file
 # Saves compressed version and optionally upscales back to original size
 
 from PIL import Image, ImageFile
 import io
+import os
+import sys
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True  # allow loading incomplete JPEGs
 
 # -------------------------
-# File paths (change if needed)
+# Paths (portable)
 # -------------------------
-header_file = 'header.bin'          # The JPEG header
-hex_file = 'jpeg_output.hex'        # The output from your Verilog TB
-compressed_jpg = 'output_image.jpg' # Final compressed JPEG (96x96)
-upscaled_jpg = 'output_upscaled.jpg' # Optional upscaled version
+script_dir = os.path.dirname(os.path.abspath(__file__))  # folder where this script lives
+header_file = os.path.join(script_dir, 'header.bin')    # JPEG header in same folder
+
+# Accept hex_file and output paths from command-line arguments
+if len(sys.argv) < 3:
+    print("Usage: python for_all_hex_to_jpg.py <hex_file> <output_jpg>")
+    sys.exit(1)
+
+hex_file = sys.argv[1]
+compressed_jpg = sys.argv[2]
+
+# Optional upscaled output
+upscaled_jpg = os.path.splitext(compressed_jpg)[0] + "_upscaled.jpg"
 
 # -------------------------
 # Step 1: Read the header
 # -------------------------
+if not os.path.exists(header_file):
+    print(f"❌ ERROR: header file not found: {header_file}")
+    sys.exit(1)
+
 with open(header_file, 'rb') as f:
     header = f.read()
 
@@ -25,6 +39,10 @@ with open(header_file, 'rb') as f:
 # Step 2: Read the hex bitstream and convert to bytes
 # -------------------------
 bitstream_bytes = bytearray()
+
+if not os.path.exists(hex_file):
+    print(f"❌ ERROR: hex file not found: {hex_file}")
+    sys.exit(1)
 
 with open(hex_file, 'r') as f:
     for line in f:
@@ -36,7 +54,7 @@ with open(hex_file, 'r') as f:
         bitstream_bytes.extend(bytes_chunk)
 
 # -------------------------
-# Step 3: Combine header + bitstream (JPEG in memory)
+# Step 3: Combine header + bitstream
 # -------------------------
 jpeg_data = header + bitstream_bytes
 
@@ -50,7 +68,7 @@ try:
     img.save(
         compressed_jpg,
         "JPEG",
-        quality=40,       # adjust 30–60 for smaller size
+        quality=40,
         optimize=True,
         progressive=True
     )
@@ -59,7 +77,7 @@ try:
     # -------------------------
     # Step 5: Upscale back (optional)
     # -------------------------
-    original_size = (640, 480)  # 👈 put your real original size here
+    original_size = (640, 480)  # 👈 replace with your real original image size
     img_up = img.resize(original_size, Image.LANCZOS)
     img_up.save(
         upscaled_jpg,
