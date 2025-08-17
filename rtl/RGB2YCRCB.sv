@@ -43,7 +43,7 @@ reg [7:0] Y, CB, CR;
 reg	enable_1, enable_2, enable_out;
 logic [23:0] data_out = {CR, CB, Y};
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Y1_product <= 0;	
@@ -79,7 +79,7 @@ end
 then the value in bits [21:14] needs to be rounded up by adding 1 to the value
 in those bits */
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Y <= 0;
@@ -96,7 +96,7 @@ begin
 end
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		enable_1 <= 0;
