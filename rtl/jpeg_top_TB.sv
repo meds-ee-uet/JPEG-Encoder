@@ -33,8 +33,8 @@ module jpeg_top_TB;
 
     // --- Initial Stimulus ---
     initial begin : STIMUL
-        // Open hex file for writing
-        file_out = $fopen("C:/Users/HH Traders/Desktop/jpeg_output.hex", "w");
+        // Open hex file for writing (relative path inside repo)
+        file_out = $fopen("jpeg_output.hex", "w");
         if (file_out == 0) begin
             $display("❌ ERROR: Could not open file.");
             $finish;
@@ -54,8 +54,8 @@ module jpeg_top_TB;
         rst = 0;
         enable = 1;
 
-        // Include pixel data (will drive data_in and enable)
-        `include "C:/Users/HH Traders/oc_jpegencode/code/pixel_data.txt"
+        // Include pixel data from repo (relative path)
+        `include "pixel_data.txt"
 
         // Wait for last data to finish
         #2000000;
