@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 // Copyright 2025 Maktab-e-Digital Systems Lahore.
 // Licensed under the Apache License, Version 2.0, see LICENSE file for details.
 // SPDX-License-Identifier: Apache-2.0
@@ -11,7 +10,7 @@
 //
 // Author: Navaal Noshi
 // Date:   17th August, 2025
->>>>>>> 7c836686dfa8ecad753f06cc324096d5c0be7dc6
+
 `timescale 1ps / 1ps
 
 module jpeg_top_TB;
@@ -45,12 +44,12 @@ module jpeg_top_TB;
 
     // --- Initial Stimulus ---
     initial begin : STIMUL
-<<<<<<< HEAD
+
         file_out = $fopen("jpeg_output.hex", "w");  // write inside rtl folder
-=======
+
         // Open hex file for writing
         file_out = $fopen("jpeg_output.hex", "w");
->>>>>>> 7c836686dfa8ecad753f06cc324096d5c0be7dc6
+
         if (file_out == 0) begin
             $display("❌ ERROR: Could not open jpeg_output.hex");
             $finish;
@@ -66,13 +65,13 @@ module jpeg_top_TB;
         rst = 0;
         enable = 1;
 
-<<<<<<< HEAD
+
         // Include pixel data directly from rtl folder
         `include "pixel_data.txt"
-=======
+
         // Include pixel data from script folder
         `include "./script/pixel_data.txt"
->>>>>>> 7c836686dfa8ecad753f06cc324096d5c0be7dc6
+
 
         #2000000;
         $fclose(file_out);
@@ -98,3 +97,4 @@ module jpeg_top_TB;
     end
 
 endmodule
+
