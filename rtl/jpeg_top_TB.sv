@@ -3,21 +3,14 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // Description:
-//   This is the SystemVerilog testbench for the top-level JPEG Encoder Core.
-//   It verifies functionality by:
-//   1. Providing input pixel data from an external file (`pixel_data.txt`).
-//   2. Driving clock, reset, enable, and end-of-file signals.
-//   3. Capturing the 32-bit JPEG bitstream output from the DUT (`jpeg_top`).
-//   4. Writing the bitstream to `jpeg_output.hex` for further verification.
-//
-//   The testbench uses relative file paths to ensure portability. This allows
-//   the design to be cloned and run on any system without modifying paths.
+//   SystemVerilog testbench for the top-level JPEG Encoder Core.
+//   Reads input pixels from `script/pixel_data.txt`.
+//   Captures the 32-bit JPEG bitstream output from DUT and writes to jpeg_output.hex.
 //
 // Author: Navaal Noshi
 // Date:   17th August, 2025
 `timescale 1ps / 1ps
 
-// Testbench for JPEG top module
 module jpeg_top_TB;
 
     // --- Signal Declarations ---
@@ -50,7 +43,7 @@ module jpeg_top_TB;
 
     // --- Initial Stimulus ---
     initial begin : STIMUL
-        // Open hex file for writing (relative path inside repo)
+        // Open hex file for writing
         file_out = $fopen("jpeg_output.hex", "w");
         if (file_out == 0) begin
             $display("❌ ERROR: Could not open file.");
@@ -71,8 +64,8 @@ module jpeg_top_TB;
         rst = 0;
         enable = 1;
 
-        // Include pixel data from repo (relative path)
-        `include "pixel_data.txt"
+        // Include pixel data from script folder
+        `include "./script/pixel_data.txt"
 
         // Wait for last data to finish
         #2000000;
