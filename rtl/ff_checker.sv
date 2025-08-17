@@ -79,7 +79,7 @@ logic fifo_empty, rdata_valid;
 	// for 1 clock cycle as the extra 00 put in after the FF will cause an
 	// extra set of 32 bits to be put into the bitstream.
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin 
 	if (rst) 
 		eof_data_partial_ready <= 0; 
@@ -89,7 +89,7 @@ begin
 		eof_data_partial_ready <= eof_dpr_1;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin 
 	if (rst) 
 		eof_dpr_1 <= 0; 
@@ -99,7 +99,7 @@ begin
 		eof_dpr_1 <= eof_dpr_2;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin 
 	if (rst) 
 		eof_dpr_2 <= 0; 
@@ -109,7 +109,7 @@ begin
 		eof_dpr_2 <= 0;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin 
 	if (rst) 
 		eof_data_ready_1 <= 0;
@@ -119,7 +119,7 @@ begin
 		eof_data_ready_1 <= eof_data_ready;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin 
 	if (rst) 
 		eof_data_ready <= 0;
@@ -129,7 +129,7 @@ begin
 		eof_data_ready <= 0;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin 
 	if (rst) begin
 		eof_bits_1 <= 0; eof_bits_2 <= 0; eof_bits_3 <= 0;
@@ -141,7 +141,7 @@ begin
 	end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin 
 	if (rst) begin
 		JPEG_bitstream_eof <= 0; JPEG_eof_ro <= 0;
@@ -156,7 +156,7 @@ begin
 	end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin 
 	if (rst)
 		JPEG_eof_ro_ro <= 0; 
@@ -164,7 +164,7 @@ begin
 		JPEG_eof_ro_ro <= JPEG_eof_7[15:0];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin // These registers combine the previous leftover bits with
 // the end of file bits
 	if (rst) begin
@@ -184,7 +184,7 @@ begin // These registers combine the previous leftover bits with
 end
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin // These registers generate the end of file bits
 	if (rst) begin
 		orc_reg <= 0; extra_bits_eof <= 0; 
@@ -235,7 +235,7 @@ begin // These registers generate the end of file bits
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_eof <= 0; 
@@ -276,7 +276,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		eof_count_enable <= 0; 
@@ -286,7 +286,7 @@ begin
 		eof_count_enable <= 1;
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		eof_count <= 0; 
@@ -296,7 +296,7 @@ begin
 		eof_count <= eof_count + 1;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		end_of_file_enable <= 0;
@@ -306,7 +306,7 @@ begin
 		end_of_file_enable <= 1;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		end_of_file_enable_hold <= 0;
@@ -316,7 +316,7 @@ end
 
 // This ends the section dealing with the end of file.
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		data_ready_1 <= 0; JPEG_bitstream_1 <= 0;
@@ -328,7 +328,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		data_ready <= 0; rdv_1 <= 0; rpf_1 <= 0;
@@ -341,7 +341,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[31:24] <= 0; 
@@ -351,7 +351,7 @@ begin
 		JPEG_bitstream[31:24] <= JPEG_ro[31:24];
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[23:16] <= 0; 
@@ -361,7 +361,7 @@ begin
 		JPEG_bitstream[23:16] <= JPEG_ro[23:16];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[15:8] <= 0; 
@@ -371,7 +371,7 @@ begin
 		JPEG_bitstream[15:8] <= JPEG_ro[15:8];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[7:0] <= 0; 
@@ -381,7 +381,7 @@ begin
 		JPEG_bitstream[7:0] <= JPEG_ro[7:0];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst)
 		JPEG_ro <= 0; 
@@ -391,7 +391,7 @@ begin
 		JPEG_ro[31:8] <= JPEG_ro_ro;
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_ro_ro <= 0;
@@ -402,7 +402,7 @@ begin
 end	
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (fifo_empty)
 		read_req <= 0; 
@@ -410,7 +410,7 @@ begin
 		read_req <= 1;
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst)
 		rollover_pf <= 0;
@@ -420,7 +420,7 @@ begin
 		rollover_pf <= read_data[0];
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin 
 		JPEG_pf <= 0; ffc_postfifo <= 0;
@@ -434,7 +434,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (!dr_in_8)
 		write_enable <= 0; 
@@ -443,7 +443,7 @@ begin
 		// write_enable is the write enable to the FIFO
 end	  
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_out_1 <= 0; ffc_7 <= 0; 
@@ -454,7 +454,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_out <= 0; ffc_6 <= 0;
@@ -465,7 +465,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_7 <= 0; ffc_5 <= 0;
@@ -478,7 +478,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_6 <= 0; ffc_4 <= 0;
@@ -492,7 +492,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_5 <= 0; ffc_3 <= 0;
@@ -507,7 +507,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_4 <= 0; ffc_2 <= 0; 
@@ -522,7 +522,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_3 <= 0; ct_1 <= 0; FF_count <= 0;
@@ -540,7 +540,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_2 <= 0; count_total <= 0; 
@@ -555,7 +555,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		first_2bytes <= 0; second_2bytes <= 0; 
@@ -571,7 +571,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		rollover_1 <= 0; rollover_2 <= 0; rollover_3 <= 0;
@@ -584,7 +584,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		rollover <= 0;
@@ -603,7 +603,7 @@ begin
 	// check of the condition ct_1 == 3'b100.
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		dr_in_1 <= 0; dr_in_2 <= 0; dr_in_3 <= 0; dr_in_4 <= 0;
