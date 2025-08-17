@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 // Copyright 2025 Maktab-e-Digital Systems Lahore.
 // Licensed under the Apache License, Version 2.0, see LICENSE file for details.
 // SPDX-License-Identifier: Apache-2.0
@@ -9,26 +11,26 @@
 //
 // Author: Navaal Noshi
 // Date:   17th August, 2025
+>>>>>>> 7c836686dfa8ecad753f06cc324096d5c0be7dc6
 `timescale 1ps / 1ps
 
 module jpeg_top_TB;
 
-    // --- Signal Declarations ---
-    bit end_of_file_signal;
-    logic [23:0] data_in;
-    logic clk;
-    logic rst;
-    bit enable;
+    // --- Signals ---
+    reg end_of_file_signal;
+    reg [23:0] data_in;
+    reg clk;
+    reg rst;
+    reg enable;
 
     logic [31:0] JPEG_bitstream;
     logic data_ready;
     logic [4:0] end_of_file_bitstream_count;
     logic eof_data_partial_ready;
 
-    // File handle for writing JPEG output
     integer file_out;
 
-    // --- Instantiate Unit Under Test ---
+    // --- Instantiate DUT ---
     jpeg_top UUT (
         .end_of_file_signal(end_of_file_signal),
         .data_in(data_in),
@@ -43,50 +45,53 @@ module jpeg_top_TB;
 
     // --- Initial Stimulus ---
     initial begin : STIMUL
+<<<<<<< HEAD
+        file_out = $fopen("jpeg_output.hex", "w");  // write inside rtl folder
+=======
         // Open hex file for writing
         file_out = $fopen("jpeg_output.hex", "w");
+>>>>>>> 7c836686dfa8ecad753f06cc324096d5c0be7dc6
         if (file_out == 0) begin
-            $display("❌ ERROR: Could not open file.");
+            $display("❌ ERROR: Could not open jpeg_output.hex");
             $finish;
-        end else begin
-            $display("✅ File opened successfully");
-        end
+        end else $display("✅ Output file opened: jpeg_output.hex");
 
-        // Initialize signals
         clk = 0;
         rst = 1;
         enable = 0;
         end_of_file_signal = 0;
         data_in = 24'b0;
 
-        // Reset UUT
         #10000;
         rst = 0;
         enable = 1;
 
+<<<<<<< HEAD
+        // Include pixel data directly from rtl folder
+        `include "pixel_data.txt"
+=======
         // Include pixel data from script folder
         `include "./script/pixel_data.txt"
+>>>>>>> 7c836686dfa8ecad753f06cc324096d5c0be7dc6
 
-        // Wait for last data to finish
         #2000000;
-
-        // Close file and finish
         $fclose(file_out);
-        $display("✅ JPEG bitstream written to file");
+        $display("✅ JPEG bitstream written to jpeg_output.hex");
         $finish;
     end
 
-    // --- Clock Generation ---
+    // --- Clock ---
     always begin
         clk = 0; #5000;
         clk = 1; #5000;
     end
 
-    // --- Capture JPEG Output ---
-    always_ff @(posedge clk) begin
+    // --- Capture JPEG output ---
+    always @(posedge clk) begin
         if (data_ready) begin
             if (file_out != 0) begin
                 $fwrite(file_out, "%08h\n", JPEG_bitstream);
+                $fflush(file_out);
             end
             $display("%08h", JPEG_bitstream);
         end

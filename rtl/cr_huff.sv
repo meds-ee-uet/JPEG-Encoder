@@ -133,7 +133,7 @@ logic	[7:0]	code_index = { zrl_2, Cr12_bits };
 
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		third_8_all_0s <= 0; fourth_8_all_0s <= 0;
@@ -165,7 +165,7 @@ zeros in a row, followed by a nonzero value.  If there are only zeros left in th
 then end_of_block will be 1.  If there are any nonzero values left in the block, end_of_block 
 will be 0. */
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		end_of_block <= 0;
@@ -183,7 +183,7 @@ begin
 		end_of_block <= 1;
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		block_counter <= 0;
@@ -196,7 +196,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		output_reg_count <= 0;
@@ -212,7 +212,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		old_orc_1 <= 0;
@@ -225,7 +225,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		rollover <= 0; rollover_1 <= 0; rollover_2 <= 0;
@@ -258,7 +258,7 @@ end
 
 
 	
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_bs_5 <= 0; 
@@ -299,7 +299,7 @@ begin
 		end
 end	
 	
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_bs_4 <= 0; JPEG_ro_bs_4 <= 0;
@@ -310,7 +310,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_bs_3 <= 0; old_orc_6 <= 0; JPEG_ro_bs_3 <= 0;
@@ -324,7 +324,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_bs_2 <= 0; old_orc_5 <= 0; JPEG_ro_bs_2 <= 0;
@@ -338,7 +338,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_bs_1 <= 0; old_orc_4 <= 0; JPEG_ro_bs_1 <= 0; 
@@ -352,7 +352,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		JPEG_bs <= 0; old_orc_3 <= 0; JPEG_ro_bs <= 0;
@@ -367,7 +367,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr12_JPEG_bits <= 0; Cr12_edge <= 0;
@@ -394,7 +394,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr11_JPEG_bits <= 0; 
@@ -419,7 +419,7 @@ begin
 end	
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr12_oc_1 <= 0; Cr12_JPEG_LSBs_4 <= 0;
@@ -434,7 +434,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr11_JPEG_LSBs_3 <= 0; Cr11_Huff_2 <= 0; 
@@ -448,7 +448,7 @@ begin
 end	
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr12_Huff_shift <= 0;
@@ -466,7 +466,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr11_output_count <= 0; Cr11_JPEG_LSBs_2 <= 0; Cr11_Huff_shift <= 0;
@@ -481,7 +481,7 @@ begin
 end	
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr12_JPEG_LSBs_2 <= 0;
@@ -499,7 +499,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr11_Huff <= 0; Cr11_Huff_count <= 0; Cr11_amp_shift <= 0;
@@ -514,7 +514,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr12_code_entry <= 0; Cr12_JPEG_LSBs_1 <= 0; Cr12_amp_shift <= 0; 
@@ -530,7 +530,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr11_bits <= 0; Cr11_JPEG_LSBs <= 0; 
@@ -541,7 +541,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr12_bits <= 0; Cr12_JPEG_LSBs <= 0; zrl_1 <= 0;
@@ -557,7 +557,7 @@ end
 
 // Cr11_amp is the amplitude that will be represented in bits in the 
 // JPEG code, following the run length code
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr11_amp <= 0;
@@ -568,7 +568,7 @@ begin
 end	
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		zero_run_length <= 0; 
@@ -578,7 +578,7 @@ begin
 		zero_run_length <= Cr12_et_zero ? zero_run_length + 1: 0;
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr12_amp <= 0;  
@@ -591,7 +591,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cr11_1_pos <= 0; Cr11_1_neg <= 0; Cr11_msb <= 0;
@@ -605,7 +605,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin 
 		Cr12_pos <= 0; Cr12_neg <= 0; Cr12_msb <= 0; Cr12_et_zero <= 0; 
@@ -1182,7 +1182,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin 
 		Cr11_diff <= 0; Cr11_1 <= 0; 
@@ -1193,7 +1193,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		Cr11_bits_pos <= 0;
@@ -1223,7 +1223,7 @@ begin
 	 	Cr11_bits_pos <= 0;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		Cr11_bits_neg <= 0;
@@ -1254,7 +1254,7 @@ begin
 end
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		Cr12_bits_pos <= 0;
@@ -1282,7 +1282,7 @@ begin
 	 	Cr12_bits_pos <= 0;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		Cr12_bits_neg <= 0;
@@ -1310,7 +1310,7 @@ begin
 	 	Cr12_bits_neg <= 0;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		enable_module <= 0; 
@@ -1320,7 +1320,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		enable_latch_7 <= 0; 
@@ -1333,7 +1333,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		enable_latch_8 <= 0; 
@@ -1343,7 +1343,7 @@ begin
 		end
 end	
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		enable_1 <= 0; enable_2 <= 0; enable_3 <= 0;
@@ -1374,7 +1374,7 @@ create the optimal Huffman table, or you can go with a generic Huffman table,
 which will have slightly less than the best compression.*/
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 Cr_DC_code_length[0] <= 2;
 Cr_DC_code_length[1] <= 2;
@@ -1905,7 +1905,7 @@ end
 
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[31] <= 0;
@@ -1915,7 +1915,7 @@ begin
 		JPEG_bitstream[31] <= JPEG_bs_5[31];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[30] <= 0;
@@ -1925,7 +1925,7 @@ begin
 		JPEG_bitstream[30] <= JPEG_bs_5[30];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[29] <= 0;
@@ -1935,7 +1935,7 @@ begin
 		JPEG_bitstream[29] <= JPEG_bs_5[29];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[28] <= 0;
@@ -1945,7 +1945,7 @@ begin
 		JPEG_bitstream[28] <= JPEG_bs_5[28];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[27] <= 0;
@@ -1955,7 +1955,7 @@ begin
 		JPEG_bitstream[27] <= JPEG_bs_5[27];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[26] <= 0;
@@ -1965,7 +1965,7 @@ begin
 		JPEG_bitstream[26] <= JPEG_bs_5[26];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[25] <= 0;
@@ -1975,7 +1975,7 @@ begin
 		JPEG_bitstream[25] <= JPEG_bs_5[25];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[24] <= 0;
@@ -1985,7 +1985,7 @@ begin
 		JPEG_bitstream[24] <= JPEG_bs_5[24];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[23] <= 0;
@@ -1995,7 +1995,7 @@ begin
 		JPEG_bitstream[23] <= JPEG_bs_5[23];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[22] <= 0;
@@ -2005,7 +2005,7 @@ begin
 		JPEG_bitstream[22] <= JPEG_bs_5[22];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[21] <= 0;
@@ -2015,7 +2015,7 @@ begin
 		JPEG_bitstream[21] <= JPEG_bs_5[21];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[20] <= 0;
@@ -2025,7 +2025,7 @@ begin
 		JPEG_bitstream[20] <= JPEG_bs_5[20];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[19] <= 0;
@@ -2035,7 +2035,7 @@ begin
 		JPEG_bitstream[19] <= JPEG_bs_5[19];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[18] <= 0;
@@ -2045,7 +2045,7 @@ begin
 		JPEG_bitstream[18] <= JPEG_bs_5[18];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[17] <= 0;
@@ -2055,7 +2055,7 @@ begin
 		JPEG_bitstream[17] <= JPEG_bs_5[17];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[16] <= 0;
@@ -2065,7 +2065,7 @@ begin
 		JPEG_bitstream[16] <= JPEG_bs_5[16];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[15] <= 0;
@@ -2075,7 +2075,7 @@ begin
 		JPEG_bitstream[15] <= JPEG_bs_5[15];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[14] <= 0;
@@ -2085,7 +2085,7 @@ begin
 		JPEG_bitstream[14] <= JPEG_bs_5[14];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[13] <= 0;
@@ -2095,7 +2095,7 @@ begin
 		JPEG_bitstream[13] <= JPEG_bs_5[13];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[12] <= 0;
@@ -2105,7 +2105,7 @@ begin
 		JPEG_bitstream[12] <= JPEG_bs_5[12];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[11] <= 0;
@@ -2115,7 +2115,7 @@ begin
 		JPEG_bitstream[11] <= JPEG_bs_5[11];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[10] <= 0;
@@ -2125,7 +2125,7 @@ begin
 		JPEG_bitstream[10] <= JPEG_bs_5[10];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[9] <= 0;
@@ -2135,7 +2135,7 @@ begin
 		JPEG_bitstream[9] <= JPEG_bs_5[9];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[8] <= 0;
@@ -2145,7 +2145,7 @@ begin
 		JPEG_bitstream[8] <= JPEG_bs_5[8];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[7] <= 0;
@@ -2155,7 +2155,7 @@ begin
 		JPEG_bitstream[7] <= JPEG_bs_5[7];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[6] <= 0;
@@ -2165,7 +2165,7 @@ begin
 		JPEG_bitstream[6] <= JPEG_bs_5[6];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[5] <= 0;
@@ -2175,7 +2175,7 @@ begin
 		JPEG_bitstream[5] <= JPEG_bs_5[5];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[4] <= 0;
@@ -2185,7 +2185,7 @@ begin
 		JPEG_bitstream[4] <= JPEG_bs_5[4];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[3] <= 0;
@@ -2195,7 +2195,7 @@ begin
 		JPEG_bitstream[3] <= JPEG_bs_5[3];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[2] <= 0;
@@ -2205,7 +2205,7 @@ begin
 		JPEG_bitstream[2] <= JPEG_bs_5[2];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[1] <= 0;
@@ -2215,7 +2215,7 @@ begin
 		JPEG_bitstream[1] <= JPEG_bs_5[1];
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
 		JPEG_bitstream[0] <= 0;
