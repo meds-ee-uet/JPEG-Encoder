@@ -38,7 +38,7 @@ logic read_enable = read_req && (~fifo_empty);
 assign fifo_empty = (read_ptr == write_ptr);
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
   begin
    if (rst)
       write_ptr <= {(5){1'b0}};
@@ -46,7 +46,7 @@ always_ff(posedge clk)
       write_ptr <= write_ptr + {{4{1'b0}},1'b1};
   end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
    if (rst)
       rdata_valid <= 1'b0;
@@ -56,7 +56,7 @@ begin
    	  rdata_valid <= 1'b0;  
 end
   
-always_ff(posedge clk)
+always_ff @(posedge clk)
  begin
    if (rst)
       read_ptr <= {(5){1'b0}};
@@ -65,13 +65,13 @@ always_ff(posedge clk)
 end
 
 // Mem write
-always_ff(posedge clk)
+always_ff @(posedge clk)
   begin
    if (write_enable)
      mem[write_addr] <= write_data;
   end
 // Mem Read
-always_ff(posedge clk)
+always_ff @(posedge clk)
   begin
    if (read_enable)
       read_data <= mem[read_addr];
