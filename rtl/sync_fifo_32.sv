@@ -17,7 +17,7 @@
 
 `timescale 1ns / 100ps
 
-module sync_fifo_ff (clk, rst, read_req, write_data, write_enable, rollover_write,
+module sync_fifo_32 (clk, rst, read_req, write_data, write_enable, rollover_write,
 read_data, fifo_empty, rdata_valid);
 input	clk;
 input	rst;
@@ -93,3 +93,4 @@ always_ff @(posedge clk)
   end
   
 endmodule
+
