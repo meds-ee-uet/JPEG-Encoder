@@ -12,28 +12,61 @@
 # Date:30th July,2025
 
 from PIL import Image
-import os
+import numpy as np
 
-def image_to_sv_binary(image_path, output_path="image_input_bin.sv", delay="#10000"):
-    # Open the image, convert to RGB, and resize to 96x96
-    img = Image.open(image_path).convert("RGB").resize((96, 96))
-    
-    # Get all pixels as a flat list of (R, G, B) tuples
-    pixels = list(img.getdata())
+# --- Configuration ---
+image_path = "desert.jpg"   # input image
+output_file = "pixel_data.txt"
+block_size = 8
 
-    with open(output_path, 'w') as f:
-        for r, g, b in pixels:
-            # Correct bit placement: B [23:16], G [15:8], R [7:0]
-            binary_val = f"{b:08b}{g:08b}{r:08b}"
-            f.write(f"data_in <= 24'b{binary_val}; {delay};\n")
+# --- Read the image (like MATLAB imread) ---
+img = np.array(Image.open(image_path))   # RGB
 
-    print(f" SystemVerilog binary file generated: {output_path}")
+# --- Convert to BGR (same as MATLAB img(:,:, [3 2 1])) ---
+imgBGR = img[:, :, [2, 1, 0]]
 
-# Set your input and output file paths here
-desktop_path = r"C:\Users\HH Traders\Desktop\image.TIFF"
-output_sv_file = r"C:\Users\HH Traders\Desktop\image_input_bin.sv"
+# Image size
+h, w, _ = imgBGR.shape
+total_pixels = h * w
+pixel_count = 0
 
-# Run the conversion
-image_to_sv_binary(desktop_path, output_sv_file)
+with open(output_file, "w") as f:
+    # Go through blocks
+    for by in range(0, h, block_size):
+        for bx in range(0, w, block_size):
+            # Extract one 8x8 block (same as MATLAB slice)
+            block = imgBGR[by:by+block_size, bx:bx+block_size, :]
 
+            # If this is the very last block → assert EOF once
+            if pixel_count == total_pixels - 64:
+                f.write("end_of_file_signal  <= 1'b1;\n")
 
+            # Loop through 8x8 block pixels, row by row (left→right, top→down)
+            for row in range(block_size):
+                for col in range(block_size):
+                    B, G, R = block[row, col]   # direct pixel read
+                    pixel_count += 1
+
+                    # Convert each channel to 8-bit binary
+                    Rbin = format(R, "08b")
+                    Gbin = format(G, "08b")
+                    Bbin = format(B, "08b")
+
+                    # BGR order
+                    binStr = f"{Bbin}{Gbin}{Rbin}"
+
+                    # Write pixel to file
+                    f.write(f"\tdata_in <= 24'b{binStr};\n#10000;\n")
+
+            # Only add block-separator if NOT the last block
+            if pixel_count < total_pixels:
+                f.write("#130000;\n")
+                f.write("enable <= 1'b0;\n")
+                f.write("#10000;\n")
+                f.write("enable <= 1'b1;\n")
+
+    # At the extreme end, only these three lines
+    f.write("#130000;\n")
+    f.write("enable <= 1'b0;\n")
+
+print("✅ Pixel data written to pixel_data.txt (8x8 blocks, row-major, EOF only before last block)")
