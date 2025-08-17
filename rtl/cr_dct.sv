@@ -116,43 +116,43 @@ integer Cb6_mul_input, Cb7_mul_input, Cb8_mul_input;
 integer Ti2_mul_input, Ti3_mul_input, Ti4_mul_input, Ti5_mul_input;
 integer Ti6_mul_input, Ti7_mul_input, Ti8_mul_input;
 
-always_ff(posedge clk)		
-begin // DCT matrix entries
-	T1 = 5793; // .3536
-	T21 = 8035; // .4904
-	T22 = 6811; // .4157
-	T23 = 4551; // .2778
-	T24 = 1598; // .0975
-	T25 = -1598; // -.0975
-	T26 = -4551; // -.2778
-	T27 = -6811; // -.4157
-	T28 = -8035; // -.4904
-	T31 = 7568; // .4619
-	T32 = 3135; // .1913
-	T33 = -3135; // -.1913
-	T34 = -7568; // -.4619
-	T52 = -5793; // -.3536
-end 
+always_ff @(posedge clk) begin
+    // DCT matrix entries
+    T1  <= 5793;   // .3536
+    T21 <= 8035;   // .4904
+    T22 <= 6811;   // .4157
+    T23 <= 4551;   // .2778
+    T24 <= 1598;   // .0975
+    T25 <= -1598;  // -.0975
+    T26 <= -4551;  // -.2778
+    T27 <= -6811;  // -.4157
+    T28 <= -8035;  // -.4904
+    T31 <= 7568;   // .4619
+    T32 <= 3135;   // .1913
+    T33 <= -3135;  // -.1913
+    T34 <= -7568;  // -.4619
+    T52 <= -5793;  // -.3536
+end
   
-always_ff(posedge clk)		
-begin // The inverse DCT matrix entries
-	Ti1 = 5793; // .3536
-	Ti21 = 8035; // .4904
-	Ti22 = 6811; // .4157
-	Ti23 = 4551; // .2778
-	Ti24 = 1598; // .0975
-	Ti25 = -1598; // -.0975
-	Ti26 = -4551; // -.2778
-	Ti27 = -6811; // -.4157
-	Ti28 = -8035; // -.4904
-	Ti31 = 7568; // .4619
-	Ti32 = 3135; // .1913
-	Ti33 = -3135; // -.1913
-	Ti34 = -7568; // -.4619
-	Ti52 = -5793; // -.3536
-end 
+always_ff @(posedge clk) begin
+    // Inverse DCT matrix entries
+    Ti1  <= 5793;   // .3536
+    Ti21 <= 8035;   // .4904
+    Ti22 <= 6811;   // .4157
+    Ti23 <= 4551;   // .2778
+    Ti24 <= 1598;   // .0975
+    Ti25 <= -1598;  // -.0975
+    Ti26 <= -4551;  // -.2778
+    Ti27 <= -6811;  // -.4157
+    Ti28 <= -8035;  // -.4904
+    Ti31 <= 7568;   // .4619
+    Ti32 <= 3135;   // .1913
+    Ti33 <= -3135;  // -.1913
+    Ti34 <= -7568;  // -.4619
+    Ti52 <= -5793;  // -.3536
+end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
  		Z_temp_11 <= 0; Z_temp_12 <= 0; Z_temp_13 <= 0; Z_temp_14 <= 0;
@@ -208,7 +208,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Z11 <= 0; Z12 <= 0; Z13 <= 0; Z14 <= 0; Z15 <= 0; Z16 <= 0; Z17 <= 0; Z18 <= 0;
@@ -258,7 +258,7 @@ begin
 		end	
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Z11_final <= 0; Z12_final <= 0; Z13_final <= 0; Z14_final <= 0;
@@ -347,7 +347,7 @@ begin
 end
 
 // output_enable signals the next block, the quantizer, that the input data is ready
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) 
  		output_enable <= 0;
@@ -358,7 +358,7 @@ begin
 	else if (count_10 & count_of == 0)
 		output_enable <= 1;
 end
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst)
 		Cb_temp_11 <= 0;
@@ -366,7 +366,7 @@ begin
 		Cb_temp_11 <= data_in * T1; 
 end  
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst)
 		Cb11 <= 0;
@@ -376,7 +376,7 @@ begin
 		Cb11 <= Cb_temp_11 + Cb11;
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cb_temp_21 <= 0;
@@ -407,7 +407,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Cb21 <= 0;
@@ -438,7 +438,7 @@ begin
 		end
 end 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
  		count <= 0; count_3 <= 0; count_4 <= 0; count_5 <= 0;
@@ -457,7 +457,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		count_1 <= 0;
@@ -470,7 +470,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
  		count_of <= 0;
@@ -486,7 +486,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
  		Cb11_final <= 0;
@@ -505,7 +505,7 @@ begin
 end
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
  		Cb21_final <= 0; Cb21_final_prev <= 0;
@@ -536,7 +536,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
  		Cb21_final_diff <= 0; Cb31_final_diff <= 0;
@@ -555,7 +555,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count)
 	3'b000:		Cb2_mul_input <= T21;
@@ -569,7 +569,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count)
 	3'b000:		Cb3_mul_input <= T31;
@@ -583,7 +583,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count)
 	3'b000:		Cb4_mul_input <= T22;
@@ -597,7 +597,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count)
 	3'b000:		Cb5_mul_input <= T1;
@@ -611,7 +611,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count)
 	3'b000:		Cb6_mul_input <= T23;
@@ -625,7 +625,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count)
 	3'b000:		Cb7_mul_input <= T32;
@@ -639,7 +639,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count)
 	3'b000:		Cb8_mul_input <= T24;
@@ -654,7 +654,7 @@ begin
 end
 
 // Inverse DCT matrix entries
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count_of_copy)
 	3'b000:		Ti2_mul_input <= Ti28;
@@ -668,7 +668,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count_of_copy)
 	3'b000:		Ti3_mul_input <= Ti31;
@@ -682,7 +682,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count_of_copy)
 	3'b000:		Ti4_mul_input <= Ti27;
@@ -696,7 +696,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count_of_copy)
 	3'b000:		Ti5_mul_input <= Ti1;
@@ -710,7 +710,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count_of_copy)
 	3'b000:		Ti6_mul_input <= Ti26;
@@ -724,7 +724,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count_of_copy)
 	3'b000:		Ti7_mul_input <= Ti32;
@@ -738,7 +738,7 @@ begin
 	endcase
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	case (count_of_copy)
 	3'b000:		Ti8_mul_input <= Ti25;
@@ -753,7 +753,7 @@ begin
 end
 
 // Rounding stage
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
  		data_1 <= 0;
@@ -801,7 +801,7 @@ begin
 		end
 end
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
  		enable_1 <= 0; 
