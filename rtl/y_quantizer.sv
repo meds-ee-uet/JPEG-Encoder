@@ -285,7 +285,7 @@ integer Z61_int, Z62_int, Z63_int, Z64_int, Z65_int, Z66_int, Z67_int, Z68_int;
 integer Z71_int, Z72_int, Z73_int, Z74_int, Z75_int, Z76_int, Z77_int, Z78_int;
 integer Z81_int, Z82_int, Z83_int, Z84_int, Z85_int, Z86_int, Z87_int, Z88_int;
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Z11_int <= 0; Z12_int <= 0; Z13_int <= 0; Z14_int <= 0;
@@ -390,7 +390,7 @@ begin
 		end
 end	   
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Z11_temp <= 0; Z12_temp <= 0; Z13_temp <= 0; Z14_temp <= 0;
@@ -447,7 +447,7 @@ begin
 end	 
 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Z11_temp_1 <= 0; Z12_temp_1 <= 0; Z13_temp_1 <= 0; Z14_temp_1 <= 0;
@@ -503,7 +503,7 @@ begin
 		end
 end	 
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		Q11 <= 0; Q12 <= 0; Q13 <= 0; Q14 <= 0; Q15 <= 0; Q16 <= 0; Q17 <= 0; Q18 <= 0;
@@ -590,7 +590,7 @@ enable the logic that needs to execute on the clock cycle after enable goes high
 enable_2 is delayed two clock cycles, and out_enable signals the next module
 that its input data is ready*/
 
-always_ff(posedge clk)
+always_ff @(posedge clk)
 begin
 	if (rst) begin
 		enable_1 <= 0; enable_2 <= 0; enable_3 <= 0;
