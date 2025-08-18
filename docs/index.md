@@ -187,16 +187,10 @@ The testbench prints:
 - The full 8×8 DCT coefficient matrix using $write formatting.
 - A status line summarizing timing and DC verification,
   
- ### ***cr_dct***:
+ ### *** *cr_dct***:
   
 <div align="center">
-  <img src="./images_testbench_EO_CO/cr_dct_EO_CO.png" alt="Cr DCT EO/CO Testbench Output" width="700" height="580">
-</div>
-
- ### ***cb_dct***:
-
-<div align="center">
- <img src="./images_testbench_EO_CO/cb_dct_EO_CO.png" alt="Cb DCT EO/CO Testbench Output" width="700" height="580">
+  <img src="./images_testbench_EO_CO/dct_EO_CO.png" alt="DCT EO/CO Testbench Output" width="700" height="580">
 </div>
 
 ---
