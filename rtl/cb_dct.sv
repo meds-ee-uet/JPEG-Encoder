@@ -1,46 +1,15 @@
-/////////////////////////////////////////////////////////////////////
-////                                                             ////
-////  JPEG Encoder Core - Verilog                                ////
-////                                                             ////
-////  Author: David Lundgren                                     ////
-////          davidklun@gmail.com                                ////
-////                                                             ////
-/////////////////////////////////////////////////////////////////////
-////                                                             ////
-//// Copyright (C) 2009 David Lundgren                           ////
-////                  davidklun@gmail.com                        ////
-////                                                             ////
-//// This source file may be used and distributed without        ////
-//// restriction provided that this copyright statement is not   ////
-//// removed from the file and that any derivative work contains ////
-//// the original copyright notice and the associated disclaimer.////
-////                                                             ////
-////     THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY     ////
-//// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED   ////
-//// TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS   ////
-//// FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL THE AUTHOR      ////
-//// OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,         ////
-//// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES    ////
-//// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE   ////
-//// GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR        ////
-//// BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF  ////
-//// LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR TORT  ////
-//// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT  ////
-//// OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE         ////
-//// POSSIBILITY OF SUCH DAMAGE.                                 ////
-////                                                             ////
-/////////////////////////////////////////////////////////////////////
-
-/* This module converts the incoming Cb data.
-The incoming data is unsigned 8 bits, so the data is in the range of 0-255
-Unlike a typical DCT, the data is not subtracted by 128 to center it around 0.
-It is only required for the first row, and instead of subtracting 128 from each
-pixel value, a total value can be subtracted at the end of the first row/column multiply,
-involving the 8 pixel values and the 8 DCT matrix values.
-For the other 7 rows of the DCT matrix, the values in each row add up to 0,
-so it is not necessary to subtract 128 from each Y, Cb, and Cr pixel value.
-Then the Discrete Cosine Transform is performed by multiplying the 8x8 pixel block values
-by the 8x8 DCT matrix. */
+// Copyright 2025 Maktab-e-Digital Systems Lahore.
+// Licensed under the Apache License, Version 2.0, see LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Description:
+//    This module performs a Discrete Cosine Transform (DCT) on 8x8 blocks of Cb (Chroma Blue) data.
+//    It uses short integers for calculations and coefficients. Unlike typical DCTs,
+//    it handles the DC offset by a final subtraction on the first coefficient,
+//    rather than pre-subtracting 128 from each input pixel.
+//
+// Author:Rameen
+// Date:11th July,2025.
 
 
 `timescale 1ns / 100ps
@@ -819,5 +788,6 @@ begin
 		enable_1 <= enable;
 		end
 end
+
 
 endmodule
