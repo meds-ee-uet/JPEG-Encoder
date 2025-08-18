@@ -28,7 +28,7 @@ if errorlevel 1 (
 echo ===============================================
 echo Step 2: Compile RTL + Testbench
 echo ===============================================
-cd /d "%RTL_DIR%"
+cd /d "%rtl_DIR%"
 %VLOG% -sv *.sv
 if errorlevel 1 (
     echo ❌ ERROR: Compilation failed
@@ -62,3 +62,4 @@ echo Output image: %SCRIPT_DIR%\output.jpg
 echo ===============================================
 
 pause
+
