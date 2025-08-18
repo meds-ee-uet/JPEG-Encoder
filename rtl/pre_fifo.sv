@@ -11,28 +11,29 @@
 //   - Enables pipelined architecture for Y/Cb/Cr encoding.
 //
 // Author:Navaal Noshi
-// Date:1t5h July,2025.
+// Date:15h July,2025.
 
 `timescale 1ns / 100ps
 
-module pre_fifo(clk, rst, enable, data_in, cr_JPEG_bitstream, cr_data_ready, 
-cr_orc, cb_JPEG_bitstream, cb_data_ready, cb_orc, y_JPEG_bitstream, 
-y_data_ready, y_orc, y_eob_output,
-y_eob_empty, cb_eob_empty, cr_eob_empty);
-input		clk, rst, enable;
-input	[23:0]	data_in;
-output  [31:0]  cr_JPEG_bitstream;
-output		cr_data_ready;
-output  [4:0] cr_orc;
-output  [31:0]  cb_JPEG_bitstream;
-output		cb_data_ready;
-output  [4:0] cb_orc;
-output  [31:0]  y_JPEG_bitstream;
-output		y_data_ready;
-output  [4:0] y_orc;
-output		y_eob_output; 
-output		y_eob_empty, cb_eob_empty, cr_eob_empty;
-
+module pre_fifo(
+    input  logic       clk,
+    input  logic       rst,
+    input  logic       enable,
+    input  logic [23:0] data_in,
+    output logic [31:0] cr_JPEG_bitstream,
+    output logic       cr_data_ready,
+    output logic [4:0] cr_orc,
+    output logic [31:0] cb_JPEG_bitstream,
+    output logic       cb_data_ready,
+    output logic [4:0] cb_orc,
+    output logic [31:0] y_JPEG_bitstream,
+    output logic       y_data_ready,
+    output logic [4:0] y_orc,
+    output logic       y_eob_output,
+    output logic       y_eob_empty,
+    output logic       cb_eob_empty,
+    output logic       cr_eob_empty
+);
 
 logic	rgb_enable;
 logic	[23:0]	dct_data_in;

@@ -25,19 +25,19 @@
 
 `timescale 1ns / 100ps
 
-module yd_q_h(clk, rst, enable, data_in,
-JPEG_bitstream, 
-  data_ready, y_orc, end_of_block_output,
-   end_of_block_empty);
-input		clk;
-input		rst;
-input		enable;
-input	[7:0]	data_in;
-output  [31:0]  JPEG_bitstream;
-output		data_ready;
-output [4:0] y_orc;
-output	end_of_block_output;
-output	end_of_block_empty;
+module yd_q_h (
+    input  logic        clk,
+    input  logic        rst,
+    input  logic        enable,
+    input  logic [7:0]  data_in,
+
+    output logic [31:0] JPEG_bitstream,
+    output logic        data_ready,
+    output logic [4:0]  y_orc,
+    output logic        end_of_block_output,
+    output logic        end_of_block_empty
+);
+
 
 
 logic	dct_enable, quantizer_enable;

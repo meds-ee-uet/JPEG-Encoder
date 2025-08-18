@@ -13,9 +13,7 @@
 //    and an 'empty' signal to indicate the FIFO's status.
 //
 // Author:Navaal Noshi
-// Date:20ht July,2025.
-
-`timescale 1ns / 100ps
+// Date:20th July,2025.
 
 module sync_fifo_32 (clk, rst, read_req, write_data, write_enable, 
 read_data, fifo_empty, rdata_valid);
@@ -33,9 +31,9 @@ reg [4:0] write_ptr;
 reg [31:0] mem [0:15];
 reg [31:0] read_data;
 reg rdata_valid;
-logic [3:0] write_addr = write_ptr[3:0];
-logic [3:0] read_addr = read_ptr[3:0];	
-logic read_enable = read_req && (~fifo_empty);
+wire [3:0] write_addr = write_ptr[3:0];
+wire [3:0] read_addr = read_ptr[3:0];	
+wire read_enable = read_req && (~fifo_empty);
 assign fifo_empty = (read_ptr == write_ptr);
 
 

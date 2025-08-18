@@ -15,6 +15,7 @@
 // Author:Navaal Noshi
 // Date:20ht July,2025.
 
+
 `timescale 1ns / 100ps
 
 module sync_fifo_ff (clk, rst, read_req, write_data, write_enable, rollover_write,
@@ -34,9 +35,9 @@ reg [4:0] write_ptr;
 reg [90:0] mem [0:15];
 reg [90:0] read_data;
 reg rdata_valid;
-logic [3:0] write_addr = write_ptr[3:0];
-logic [3:0] read_addr = read_ptr[3:0];	
-logic read_enable = read_req && (~fifo_empty);
+wire [3:0] write_addr = write_ptr[3:0];
+wire [3:0] read_addr = read_ptr[3:0];	
+wire read_enable = read_req && (~fifo_empty);
 assign fifo_empty = (read_ptr == write_ptr);
 
 

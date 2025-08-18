@@ -9,7 +9,6 @@
 //
 // Author:Rameen
 // Date:15th July,2025.
-
 `timescale 1ns / 100ps
 		
 module y_huff(clk, rst, enable,
