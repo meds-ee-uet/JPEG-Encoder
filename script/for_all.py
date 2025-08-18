@@ -8,8 +8,7 @@ import os
 # --- Configuration ---
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))  # folder where script is located
 
-rtl_dir = os.path.join(SCRIPT_DIR, "rtl")               # rtl folder for pixel_data.txt
-os.makedirs(rtl_dir, exist_ok=True)                     # ensure folder exists
+rtl_dir = os.path.join(os.path.dirname(SCRIPT_DIR), 'rtl')
 
 input_image = os.path.join(SCRIPT_DIR, "test.jpg")      # input image
 hex_file = os.path.join(SCRIPT_DIR, "input_96.hex")     # hex RGB values in script folder
@@ -18,7 +17,7 @@ width, height = 96, 96
 
 input_image = os.path.join(SCRIPT_DIR, "test.jpg")       # input image (any size)
 hex_file = os.path.join(SCRIPT_DIR, "input_96.hex")      # plain hex RGB values
-pixel_file = os.path.join(SCRIPT_DIR, "pixel_data.txt")  # Verilog-style data stream
+pixel_file = os.path.join(rtl_dir, "pixel_data.txt")  # Verilog-style data stream
 width, height = 96, 96         # resize target
 block_size = 8
 
@@ -88,4 +87,3 @@ def image_to_blocks(img_array, block_out, block_size=8):
 if __name__ == "__main__":
     resized_array = image_to_hex(input_image, hex_file, width, height)
     image_to_blocks(resized_array, pixel_file, block_size)
-
