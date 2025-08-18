@@ -216,10 +216,6 @@ After applying inputs and enabling the module for one clock cycle, the testbench
   <img src="./images_testbench_EO_CO/quantizer_EO_CO.png" alt="Quantizer EO/CO Testbench Output" width="700" height="580">
   </div>
   
-  <div align="center">
-  <img src="./images_testbench_EO_CO/quantizer_2_EO_CO.png" alt="Quantizer 2 EO/CO Testbench Output" width="700" height="580">
-  </div>
-  
 ---
 
 ## `tb_*_huff`:
