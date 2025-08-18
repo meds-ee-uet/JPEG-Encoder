@@ -285,27 +285,6 @@ The expected output from the testbench includes confirmation of correct write an
 
 ---
 
-## `tb_sync_fifo_ff`
-### 1. Purpose
-This testbench verifies the behavior of the sync_fifo_ff module — a synchronous FIFO buffer with a 91-bit wide data interface and a special rollover_write input that triggers an intentional "bubble" or skipped entry in the FIFO. The design includes standard FIFO operations along with extended functionality, making it important to validate both normal and rollover behavior.The testbench aims to confirm: Standard FIFO write and read sequencing,Correct handling of valid data (rdata_valid) and empty flags.The effect of rollover_write, which should insert a skipped (or invalid) slot in the FIFO write pipeline.
-
-### 2.  Input Pattern
-Standard Write & Read:
-- Four 91-bit data values (100, 101, 102, 103) are written into the FIFO.
-- These values are read back in order using synchronized read_req pulses and checking rdata_valid to confirm valid outputs.
-Rollover Write Test:
-- A special write_rollover(500) is issued, expected to skip a FIFO entry.
-- Two more values (999, 777) are written normally.
-- All entries are read sequentially to observe if the rollover_write caused a gap or delay in FIFO output behavior.
-  
-### 3. Expected Outputs
-Read operations are synchronized using read_req and a wait on rdata_valid.This helps trace FIFO behavior, especially around skipped or inserted bubbles from the rollover_write mechanism.
-  
-  <div align="center">
-  <img src="./images_testbench_EO_CO/sync_fifo_ff_EO_CO.png" alt="Sync FIFO FF EO/CO Testbench Output" width="500" height="380">
-  </div>
-  
----
 
 ##  Licensing
 
