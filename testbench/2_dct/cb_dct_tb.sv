@@ -19,7 +19,7 @@
 
 `timescale 1ns / 100ps
 
-module cb_dct_tb;
+module cb_dct_tb;                    // *cb,cr,y change this accordingly
 
   // Clock and signals
   logic clk;
@@ -142,3 +142,4 @@ module cb_dct_tb;
   end
 
 endmodule
+
