@@ -7,7 +7,7 @@ REM ================================
 set PYTHON=python
 set REPO_ROOT=%~dp0
 set SCRIPT_DIR=%REPO_ROOT%script
-set RTL_DIR=%REPO_ROOT%rtl
+set rtl_DIR=%REPO_ROOT%rtl
 set TEST_IMAGE=%SCRIPT_DIR%\test.jpg
 set TB_TOP=jpeg_top_TB
 
@@ -49,7 +49,7 @@ if errorlevel 1 (
 echo ===============================================
 echo Step 4: Convert output hex to JPEG
 echo ===============================================
-%PYTHON% "%SCRIPT_DIR%\for_all_hex_to_jpg.py" "%SCRIPT_DIR%\jpeg_output.hex" "%SCRIPT_DIR%\output.jpg"
+%PYTHON% "%SCRIPT_DIR%\for_all_hex_to_jpg.py" "%rtl_DIR%\jpeg_output.hex" "%rtl_DIR%\output.jpg"
 if errorlevel 1 (
     echo ❌ ERROR: JPEG rebuild failed
     pause
@@ -62,4 +62,5 @@ echo Output image: %SCRIPT_DIR%\output.jpg
 echo ===============================================
 
 pause
+
 
