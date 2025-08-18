@@ -22,9 +22,6 @@
 // Date:22nd July,2025.
 
 `timescale 1ns / 100ps
-
-`include "cr_huff_constants.svh"
-
 module cr_huff_tb;
 
     // Testbench signals
@@ -131,3 +128,4 @@ module cr_huff_tb;
     end
 
 endmodule
+
