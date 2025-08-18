@@ -23,7 +23,6 @@
 // Date:21st July,2025.
 
 `timescale 1ns / 100ps
-`include "cb_huff_constants.svh"
 
 module cb_huff_tb;
 
@@ -130,3 +129,4 @@ module cb_huff_tb;
     $finish;
   end
 endmodule
+
