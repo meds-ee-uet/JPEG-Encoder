@@ -21,7 +21,7 @@
 // Date: 24th July, 2025
 `timescale 1ns / 100ps
 
-module tb_y_quantizer;
+module tb_y_quantizer;     // y,cr,cb only change here
 
     // Signals for the DUT
     logic clk;
@@ -113,3 +113,4 @@ module tb_y_quantizer;
         $finish;
     end
 endmodule
+
