@@ -37,12 +37,16 @@ git clone https://github.com/YourUsername/JPEG-Encoder.git
 cd JPEG-Encoder
 ```
 
-### Build & Simulate
+##  Run JPEG Compression
 
-Run a simple module test (e.g., Y DCT) using Make:
+First do this:
+```bash
+cd sdk
+```
+To compress an image, simply run:
 
 ```bash
-make SIM=y_dct
+run.bat
 ```
 
 ## Quick Links
@@ -51,7 +55,7 @@ make SIM=y_dct
 |----------|-------------|----------|
 |  **Documentation** | ReadTheDocs Project Page | [ReadTheDocs](https://jpeg-encoder.readthedocs.io/en/latest/) |
 |  **Simulations** | All Cocotb testbenches | `tests/` directory |
-| **Modules** | Each core block (DCT, Quantizer, Huffman, FIFO) | `src/` directory |
+| **Modules** | Each core block (DCT, Quantizer, Huffman, FIFO) | `rtl/` directory |
 | **License** | Project's license file | `LICENSE` |
 
 ---
