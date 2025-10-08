@@ -39,7 +39,7 @@ The testbench is designed to check the accuracy of color space conversion under 
 Each input is applied with a 1-cycle enable signal and a 3-cycle wait to accommodate pipeline latency. The testbench checks for a valid `enable_out` and prints the YCbCr result in a readable format. 
 
  <div align="center">
- <img src="./images_testbench_EO_CO/rgb2ycrcb_EO_CO.png" alt="RGB to YCbCr EO/CO Testbench Output" width="500" height="380">
+ <img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_testbench_EO_CO/rgb2ycrcb_EO_CO.png" alt="RGB to YCbCr EO/CO Testbench Output" width="500" height="380">
  </div>
 
 ---
@@ -57,7 +57,7 @@ The testbench prints:
  ### `*_dct`:
   
 <div align="center">
-  <img src="./images_testbench_EO_CO/dct_EO_CO.png" alt="DCT EO/CO Testbench Output" width="500" height="320">
+  <img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_testbench_EO_CO/dct_EO_CO.png" alt="DCT EO/CO Testbench Output" width="500" height="320">
 </div>
 
 ---
@@ -72,7 +72,7 @@ After applying inputs and enabling the module for one clock cycle, the testbench
  ### `*_quantizer:` 
   
   <div align="center">
-  <img src="./images_testbench_EO_CO/quantizer_EO_CO.png" alt="Quantizer EO/CO Testbench Output" width="500" height="380">
+  <img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_testbench_EO_CO/quantizer_EO_CO.png" alt="Quantizer EO/CO Testbench Output" width="500" height="380">
   </div>
   
   
@@ -88,7 +88,7 @@ For each test case, the monitor displays:The evolving state of `data_ready`, `ou
  ### `*_huff`:
   
   <div align="center">
- <img src="./images_testbench_EO_CO/y_huff_EO_CO.png" alt="Y Huffman EO/CO Testbench Output" width="600" height="380">
+ <img src="https://github.com/rmknae/JPEG-Encoder/blob/main/docs/images_testbench_EO_CO/y_huff_EO_CO.png?raw=true" alt="Y Huffman EO/CO Testbench Output" width="600" height="380">
   </div>
 
 ---

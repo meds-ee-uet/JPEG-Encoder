@@ -36,7 +36,7 @@ Performs header patching, bitstream merging, and outputs valid `.jpeg` files int
 ### Top-Level Block Diagram
 
 <div align="center">
- <img src="./images_design_diagrams/JPEG-Top-level-module.png" alt="JPEG-Top-level-Module" width="700" height="400">
+ <img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_design_diagrams/JPEG-Top-level-module.png" alt="JPEG-Top-level-Module" width="700" height="400">
 </div>
 
 #### Inputs:
@@ -65,7 +65,7 @@ The output of the encoder is a 32-bit JPEG bitstream provided on the `JPEG_bitst
 
 
 <div align="center">
- <img src="./images_design_diagrams/JPEG-pipeline_diagram.png" alt="JPEG Pipeline Diagram" width="600" height="700">
+ <img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_design_diagrams/JPEG-pipeline_diagram.png" alt="JPEG Pipeline Diagram" width="600" height="700">
 </div>
 
 The JPEG encoding pipeline starts with the `rgb2ycbcr` module, which converts RGB pixels into 8×8 `Y`,`Cb`, and `Cr` blocks and asserts data_ready. These blocks are processed in parallel by `y_dct`, `cb_dct`, and `cr_dct`, producing 12-bit frequency coefficients Each output goes to its respective quantizer, generating 8-bit quantized data and control signals. From here, data follows two paths: one into the Huffman encoders, producing `vc_code` and `code_len`, and another into intermediate buffers, combined as 24-bit data_in for `pre_fifo`. Both streams meet at `fifo_out`, which assembles a 32-bit J`PEG_bitstream` with `data_ready` and `orc_reg`. This bitstream passes through `sync_fifo_32` for synchronization, then through the `ff_checker` for integrity checks, and finally exits via the `jpeg_out` module as `output_data` with `output_valid`.
@@ -75,7 +75,7 @@ The JPEG encoding pipeline starts with the `rgb2ycbcr` module, which converts RG
 ### `RGB2YCBCR`
 
 <div align="center">
-<img src="./images_design_diagrams/JPEG-rgb2ycrcb.png" alt="RGB to YCbCr Conversion Diagram" width="640" height="500">
+<img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_design_diagrams/JPEG-rgb2ycrcb.png" alt="RGB to YCbCr Conversion Diagram" width="640" height="500">
 </div>
 
 The `rgb2ycbcr module` is the first processing block in the JPEG encoder pipeline, responsible for converting incoming 24-bit RGB pixel data {B[7:0], G[7:0], R[7:0]} into the YCbCr color space {Cr, Cb, Y} using the ITU-R BT.601 standard. This transformation separates luminance (Y) from chrominance (Cb and Cr) using weighted sums of the red, green, and blue components:
@@ -91,7 +91,7 @@ To implement this efficiently in hardware, all coefficients are scaled by `2¹³
 ### `*_dct`: DCT Modules
 
 <div align="center">
-<img src="./images_design_diagrams/JPEG-dct.png" alt="JPEG DCT Block Diagram" width="450" height="480">
+<img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_design_diagrams/JPEG-dct.png" alt="JPEG DCT Block Diagram" width="450" height="480">
 </div>
 
 The `y_dct, cb_dct, and cr_dct modules` each perform a 2D Discrete Cosine Transform (DCT) on 8×8 blocks of image data corresponding to the Y (luminance), Cb (chroma blue), and Cr (chroma red) components in a JPEG encoder. This transformation shifts pixel data from the spatial domain to the frequency domain, enabling efficient compression. The computation follows the formula 
@@ -108,7 +108,7 @@ The DCT uses a scaled matrix T **(×2¹⁴ = 16384)** with three pipeline stages
 ## `*_quantizer`: Quantization Modules
 
 <div align="center">
- <img src="./images_design_diagrams/JPEG-quantization.png" alt="JPEG Quantization Diagram" width="550" height="480">
+ <img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_design_diagrams/JPEG-quantization.png" alt="JPEG Quantization Diagram" width="550" height="480">
 </div>
 
 The `y_quantizer, cr_quantizer, and cb_quantizer` modules perform lossy compression by quantizing an 8×8 block of Y (luminance) DCT coefficients. Instead of dividing by quantization constants, each coefficient is multiplied by a precomputed reciprocal scaled by 2¹² (4096). These reciprocals (e.g., QQ1_1 = 4096 / Q1_1) are fixed at compile time and stored in a matrix. The design uses a 3-stage pipeline: (1) sign-extend the 11-bit DCT input to 32 bits, (2) multiply by the scaled reciprocal, and (3) apply a right-shift with rounding (based on bit 11) to remove the 2¹² scaling and produce the quantized output.
@@ -118,7 +118,7 @@ The `y_quantizer, cr_quantizer, and cb_quantizer` modules perform lossy compress
 ### `*_huff`: Huffman Encoding
 
 <div align="center">
-  <img src="./images_design_diagrams/JPEG-huff.png" alt="JPEG Huffman Encoding Diagram" width="640" height="400">
+  <img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_design_diagrams/JPEG-huff.png" alt="JPEG Huffman Encoding Diagram" width="640" height="400">
 </div>
 
 The `y_huff, cb_huff, and cr_huff modules` perform JPEG-compliant Huffman encoding for the `Y` (luminance), `Cb` (chroma-blue), and `Cr` (chroma-red) channels, respectively. Each module operates in five stages: ***(1)*** extracting sign and magnitude of the quantized DCT coefficients, ***(2)*** applying run-length encoding (RLE) to compress sequences of zero-valued AC coefficients, ***(3)*** performing lookups in predefined JPEG Huffman tables, ***(4)*** packing the variable-length Huffman codes and amplitudes into 32-bit words, and ***(5)*** outputting the encoded data stream. 
@@ -135,7 +135,7 @@ The `y_d_q_h, cb_d_q_h, and cr_d_q_h modules` each combine the DCT, quantizer, a
 ### Block Diagram
 
 <div align="center">
-  <img src="./images_design_diagrams/JPEG-fsm.png" alt="JPEG Encoder FSM Diagram" width="800" height="580">
+  <img src="https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_design_diagrams/JPEG-fsm.png" alt="JPEG Encoder FSM Diagram" width="800" height="580">
 </div>
 
 The pre_fifo module acts as a wrapper that groups outputs from `y_huff`, `cb_huff`, `cr_huff`, and `rgb2ycbcr`, without adding any logic. Its output is fed into the `fifo_out` module, which connects to three 32-bit × 16-entry sync_fifo_32 buffers, temporarily storing Huffman-encoded data from the `Y`, `Cb`, and `Cr` channels. Although small quantization tables can produce longer Huffman codes and risk overflowing the Cb or Cr FIFOs (over 512 bits per block), testing showed no overflows; the Y channel is read more frequently and is less prone to this issue.
