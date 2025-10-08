@@ -53,7 +53,7 @@ run.bat
 
 | Category | Description | Location |
 |----------|-------------|----------|
-|  **Documentation** | ReadTheDocs Project Page | [ReadTheDocs](https://jpeg-encoder.readthedocs.io/en/latest/) |
+|  **Documentation** | ReadTheDocs Project Page | [ReadTheDocs](https://jpeg-encoder5.readthedocs.io/en/latest/) |
 |  **Simulations** | All Cocotb testbenches | `tests/` directory |
 | **Modules** | Each core block (DCT, Quantizer, Huffman, FIFO) | `rtl/` directory |
 | **License** | Project's license file | `LICENSE` |
