@@ -13,7 +13,7 @@ It is designed for real-time, low-power applications in embedded systems.
 
 *Before Compression vs After Compression*  
 <p align="center">
-  <img src="./images_design_diagrams/compressed image.png" alt="Before and After Compression" width="700" height="400">
+  <img src="https://github.com/rmknae/JPEG-Encoder/blob/main/docs/images_design_diagrams/compressed%20image.png?raw=true" width="700" height="400">
 </p>
 ---
 
