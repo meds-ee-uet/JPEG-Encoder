@@ -50,7 +50,7 @@ Licensed under the [Apache 2.0 License](https://www.google.com/search?q=LICENSE)
 ## Workflow Flowchart
 
 <p align="center">
-  <img src="https://github.com/rmknae/JPEG-Encoder/blob/main/docs/images_design_diagrams/readmeflowchart.png" alt="JPEG Encoder Workflow Flowchart" width="900" height="900">
+  <img src="https://github.com/rmknae/JPEG-Encoder/blob/main/docs/images_testbench_EO_CO/y_huff_EO_CO.png?raw=true" alt="JPEG Encoder Workflow Flowchart" width="900" height="900">
 </p>
 
 *Overall flow of JPEG Compression Steps*
