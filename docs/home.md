@@ -20,7 +20,7 @@ It is designed for real-time, low-power applications in embedded systems.
 ## Workflow Flowchart
 
 <p align="center">
-  <img src="./images_design_diagrams/flowchart.png" alt="Flowchart" width="700" height="500">
+  <img src="[./images_design_diagrams/flowchart.png](https://github.com/rmknae/JPEG-Encoder/raw/main/docs/images_design_diagrams/flowchart.png)" alt="Flowchart" width="700" height="500">
 </p>
 
 *Overall flow of JPEG Compression Steps*
