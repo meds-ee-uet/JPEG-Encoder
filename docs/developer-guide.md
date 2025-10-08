@@ -88,7 +88,7 @@ For each test case, the monitor displays:The evolving state of `data_ready`, `ou
  ### `*_huff`:
   
   <div align="center">
- <img src="https://raw.githubusercontent.com/rmknae/JPEG-Encoder/refs/heads/main/docs/images_testbench_EO_CO/y_huff_EO_CO.png" alt="Y Huffman EO/CO Testbench Output" width="600" height="380">
+ <img src="https://github.com/rmknae/JPEG-Encoder/blob/main/docs/images_testbench_EO_CO/y_huff_EO_CO.png?raw=true" alt="Y Huffman EO/CO Testbench Output" width="600" height="380">
   </div>
 
 ---
