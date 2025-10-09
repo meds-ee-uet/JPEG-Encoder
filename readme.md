@@ -69,5 +69,5 @@ For detailed module descriptions, timing diagrams, and verification results, vis
 ---
 
 <p align="center">
-  Developed at the <b>MEDS)</b>, UET Lahore.
+  Developed at the <b>(MEDS)</b>, UET Lahore.
 </p>
